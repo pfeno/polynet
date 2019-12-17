@@ -1,0 +1,6 @@
+<div class="form">
+  <mat-form-field>
+    <textarea matInput placeholder="Leave a story" [(ngModel)]="this.content" ></textarea>
+  </mat-form-field>
+  <button (click)="this.shareStory()" color="primary" mat-button mat-raised-button>Send!</button>
+</div>
