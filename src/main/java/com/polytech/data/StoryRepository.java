@@ -3,6 +3,7 @@ package com.polytech.data;
 import java.util.List;
 
 public interface StoryRepository {
-    public void save(Story story);
-    public List<Story> fetchAll();
+    void save(Story story);
+    List<Story> fetchAll();
+    List<Story> fetchLimit(int skip, int limit);
 }

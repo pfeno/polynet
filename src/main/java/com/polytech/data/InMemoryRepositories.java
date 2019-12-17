@@ -5,7 +5,7 @@ import java.util.List;
 
 public class InMemoryRepositories implements StoryRepository {
 
-    List<Story> database;
+    private List<Story> database;
 
     public InMemoryRepositories() {
         this.database = new ArrayList<Story>();
@@ -17,5 +17,12 @@ public class InMemoryRepositories implements StoryRepository {
 
     public List<Story> fetchAll() {
         return database;
+    }
+
+    public List<Story> fetchLimit(int skip, int limit) {
+        if (skip + limit > database.size()) {
+            return database.subList(skip, database.size());
+        }
+        else return database.subList(skip, skip + limit);
     }
 }

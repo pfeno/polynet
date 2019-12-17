@@ -4,23 +4,19 @@ import com.polytech.business.PublicationService;
 import com.polytech.data.InMemoryRepositories;
 import com.polytech.data.Story;
 import com.polytech.data.StoryRepository;
+import org.springframework.http.HttpStatus;
+//import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-@WebServlet("/stories")
-public class StoryController extends HttpServlet {
+@RestController()
+@CrossOrigin(origins = "*")
+public class StoryController {
 
     private PublicationService publicationService;
+    private int skip;
+    private int limit;
 
     public StoryController() {
         // instantiate and inject dependencies ...
@@ -28,23 +24,39 @@ public class StoryController extends HttpServlet {
         publicationService = new PublicationService(storyRepository);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String content = req.getParameter("content");
+    /*
+        @PostMapping("/stories")
+        @ResponseStatus(HttpStatus.CREATED)
+        protected void share(@RequestParam() String content) {
+            publicationService.share(new Story(content));
+        }
+    */
+    @PostMapping("/stories")
+    @ResponseStatus(HttpStatus.CREATED)
+    protected void share(@RequestBody String content) {
         publicationService.share(new Story(content));
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Story> stories = publicationService.fetchAll();
-        resp.setContentType("application/json");
-        String body = stories.stream()
-                .map(story -> story.toString())
-                .collect(Collectors.joining(","));
 
-        PrintWriter writer = resp.getWriter();
-        writer.println("[" + body + "]");
-        // http://localhost:8080/polynet_war/stories?content=Hello
-        // http://localhost:8080/polynet_war/stories?content=World
+
+        @GetMapping("/stories")
+        @ResponseStatus(HttpStatus.ACCEPTED)
+        protected List<Story> fetchAll(@RequestParam(value="skip", defaultValue = "0") int skip, @RequestParam(value="limit", defaultValue = "0") int limit) {
+            if (skip == 0 && limit == 0) {
+                return publicationService.fetchAll();
+            }
+            else return publicationService.fetchLimit(skip, limit);
+        }
+        /*
+        @RequestMapping(value = "/stories/{skip}/{limit}",
+            method = RequestMethod.GET,
+            consumes = "application/json",
+            produces = "application/json")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    protected List<Story> fetchAll(@PathVariable int skip, @PathVariable int limit) {
+        if (skip == 0 && limit == 0) {
+            return publicationService.fetchAll();
+        } else return publicationService.fetchLimit(skip, limit);
     }
+*/
 }
