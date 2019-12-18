@@ -24,19 +24,19 @@ public class StoryController {
         publicationService = new PublicationService(storyRepository);
     }
 
-    /*
+
         @PostMapping("/stories")
         @ResponseStatus(HttpStatus.CREATED)
         protected void share(@RequestParam() String content) {
             publicationService.share(new Story(content));
         }
-    */
+    /*
     @PostMapping("/stories")
     @ResponseStatus(HttpStatus.CREATED)
     protected void share(@RequestBody String content) {
         publicationService.share(new Story(content));
     }
-
+*/
 
     @GetMapping("/stories")
     @ResponseStatus(HttpStatus.ACCEPTED)
