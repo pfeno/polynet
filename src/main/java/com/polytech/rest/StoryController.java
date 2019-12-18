@@ -38,25 +38,24 @@ public class StoryController {
     }
 
 
-
-        @GetMapping("/stories")
-        @ResponseStatus(HttpStatus.ACCEPTED)
-        protected List<Story> fetchAll(@RequestParam(value="skip", defaultValue = "0") int skip, @RequestParam(value="limit", defaultValue = "0") int limit) {
-            if (skip == 0 && limit == 0) {
-                return publicationService.fetchAll();
-            }
-            else return publicationService.fetchLimit(skip, limit);
-        }
-        /*
-        @RequestMapping(value = "/stories/{skip}/{limit}",
-            method = RequestMethod.GET,
-            consumes = "application/json",
-            produces = "application/json")
+    @GetMapping("/stories")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    protected List<Story> fetchAll(@PathVariable int skip, @PathVariable int limit) {
+    protected List<Story> fetchAll(@RequestParam(value = "skip", defaultValue = "0") int skip, @RequestParam(value = "limit", defaultValue = "0") int limit) {
         if (skip == 0 && limit == 0) {
             return publicationService.fetchAll();
         } else return publicationService.fetchLimit(skip, limit);
     }
-*/
+
+/*
+    @RequestMapping(value = "/stories/{skip}/{limit}",
+            method = RequestMethod.GET,
+            consumes = "application/json",
+            produces = "application/json")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    protected List<Story> fetchAll(@PathVariable(required = false) int skip, @PathVariable int limit) {
+        if (skip == 0 && limit == 0) {
+            return publicationService.fetchAll();
+        } else return publicationService.fetchLimit(skip, limit);
+    }
+  */
 }

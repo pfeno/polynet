@@ -15,6 +15,6 @@ export class StoryPublishComponent implements OnInit {
     ngOnInit() {}
 
   shareStory() {
-    this.storiesService.share(this.content);
+    this.storiesService.share(this.content).then(() => this.content = "");
     };
 }

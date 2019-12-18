@@ -1,3 +1,5 @@
 .idea/
 polytech.iml
 target/
+/node_modules/
+/polynet-front/node_modules/
