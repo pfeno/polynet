@@ -3,8 +3,8 @@ package com.polytech.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryRepositories implements StoryRepository {
-
+public class InMemoryRepositories { //} implements StoryRepository {
+/*
     private List<Story> database;
 
     public InMemoryRepositories() {
@@ -25,4 +25,6 @@ public class InMemoryRepositories implements StoryRepository {
         }
         else return database.subList(skip, skip + limit);
     }
+
+ */
 }

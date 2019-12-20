@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+// import {HttpClient} from "@angular/common/http";
 import { StoriesService} from "../stories.service";
+
 
 @Component({
   selector: 'app-feed',
@@ -16,7 +17,6 @@ export class FeedComponent implements OnInit {
     this.storiesService.fetch().then(()=>{
       this.stories=this.storiesService.getStories();
     });
-
   }
 
 }

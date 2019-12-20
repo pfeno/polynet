@@ -1,8 +1,8 @@
-<div>
-  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
-  </mat-menu>
-
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Polynet</span>
+    <span class="example-spacer"></span>
+    <!--<button mat-button>Story publisher</button>-->
+    <button mat-button (click)="logout()" *ngIf="isConnected()">Log out</button>
+  </mat-toolbar-row>
+</mat-toolbar>

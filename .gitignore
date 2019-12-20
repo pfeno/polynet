@@ -3,3 +3,4 @@ polytech.iml
 target/
 /node_modules/
 /polynet-front/node_modules/
+/src/main/resources/static/

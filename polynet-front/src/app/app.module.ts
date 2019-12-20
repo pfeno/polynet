@@ -3,32 +3,46 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+//import { FormComponent } from './form/form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
-import { StoryPublishComponent } from './story-publish/story-publish.component';
+import { StoryPublisherComponent } from './story-publisher/story-publisher.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+//import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 import { FeedComponent } from './feed/feed.component';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule} from "@angular/material";
+import {MatListModule} from "@angular/material/list";
+import {MatCardModule} from "@angular/material/card";
+import { LoginComponent } from './login/login.component';
+import { WallComponent } from './wall/wall.component';
 import {FormsModule} from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    //FormComponent,
     MenuComponent,
-    StoryPublishComponent,
+    StoryPublisherComponent,
     FeedComponent,
+    LoginComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule,
+    //FormsModule,
     HttpClientModule,
-    MatCardModule
+    MatListModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
